@@ -1354,25 +1354,21 @@ export class News extends Component {
     return (
       <div className="container my-5">
         <h2>NewsMonkey - Top Headlines</h2>
+
         {/* This is a news component. */}
         <div className="row">
-          <div className="col-md-4">
-            <NewsItem
-              title="myTitle"
-              description="myDesc"
-              imageUrl="https://i0.wp.com/imgs.hipertextual.com/wp-content/uploads/2023/06/spider-man-cruzando-el-multiverso.jpg?fit=2500%2C1406&quality=50&strip=all&ssl=1"
-              newsUrl="TODO"
-            />
-          </div>
-          <div className="col-md-4">
-            <NewsItem
-              title="myTitle"
-              description="myDesc"
-            />
-          </div>
-          <div className="col-md-4">
-            <NewsItem title="myTitle" description="myDesc" />
-          </div>
+          {this.state.articles.map((element) => {
+            return (
+              <div className="col-md-4" key={element.url}>
+                <NewsItem
+                  title={element.title.slice(0, 40)}
+                  description={element.description.slice(0, 88)}
+                  imageUrl={element.urlToImage}
+                  newsUrl={element.url}
+                />
+              </div>
+            );
+          })}
         </div>
       </div>
     );
